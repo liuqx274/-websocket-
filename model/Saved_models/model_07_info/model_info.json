@@ -1,5 +1,5 @@
 {
-  "model_name": "model_02_info",
+  "model_name": "model_07_info",
   "target": "平均冲击功",
   "algorithm": "XGBoost",
   "accuracy": 1,
@@ -28,12 +28,12 @@
   },
   "model_save_info": {
     "saved_at": "2025-04-10 15:30:00",
-    "save_location": "Saved_models/model_02_info/",
-    "notes": "Initial version with XGBoost, baseline performance"
+    "save_location": "Saved_models/model_07_info/",
+    "notes": "第七个模型\n"
   },
   "model_performance": {
     "precision": 0.91,
     "recall": 0.89,
-    "f1_score": 0.90
+    "f1_score": 0.9
   }
 }
