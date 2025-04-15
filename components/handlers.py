@@ -2,6 +2,7 @@
     处理函数：根据前端所发送的 操作数不同 来调用不同的功能函数，并将结果保存，递交给主函数
 """
 from components.logger import get_logger  # 导入日志模块
+from components.exceptions import SelfError  # 导入异常信息模块
 import importlib
 from components.protocol import ClientRequestData, ServerResponseData
 
@@ -44,10 +45,16 @@ async def handle_operation(operation: str, data: ClientRequestData) -> ServerRes
         # 如果找到该模块，获取该模块下的函数并调用
         function_name = operation  # 函数名与操作名相同
         operation_function = getattr(module, function_name, None)  # getattr: 从指定的文件 module 中找出 function_name 函数
-        if callable(operation_function):    # 判断是不是真的找到了一个能执行的函数
+        if callable(operation_function):  # 判断是不是真的找到了一个能执行的函数
             logging.debug(f"已找到对应的函数-{operation_function}")
-            result = await operation_function(data.get(operation, {}))
-            response["result"][operation] = result
+            try:
+                result = await operation_function(data.get(operation, {}))
+                response["result"][operation] = result
+            except SelfError as e:
+                response["status"] = False
+                response["result"]["message"] = f"{e.message}"
+                return response
+
         else:
             response["status"] = False
             response["result"]["message"] = f"模块 {operation} 中未找到有效的函数"
