@@ -23,3 +23,7 @@ Thumbs.db
 # === 编译、打包等 ===
 dist/
 build/
+
+# === 模型保存文件 ===
+model/
+
