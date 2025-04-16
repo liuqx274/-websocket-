@@ -25,8 +25,8 @@ dist/
 build/
 
 # === 模型保存文件 ===
-model/Saved_models/
-model/temp_model/
+model/Saved_models/*
+model/temp_model/*
 # 保留目录结构
 !model/Saved_models/.gitkeep
 !model/temp_model/.gitkeep
