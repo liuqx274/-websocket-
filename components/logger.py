@@ -36,7 +36,7 @@ def get_logger():
 
     # 创建新的 logger 实例
     logger = logging.getLogger("WebSocketServer")
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.DEBUG)
 
     # 防止重复添加 Handler（如果已经配置过，就不再重复添加）
     if not logger.handlers:
@@ -44,6 +44,7 @@ def get_logger():
         file_handler = TimedRotatingFileHandler(
             log_file, when="midnight", interval=1, backupCount=30, encoding="utf-8"
         )
+        file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(logging.Formatter(
             "%(asctime)s - %(levelname)s - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S"
@@ -51,6 +52,7 @@ def get_logger():
 
         # 创建控制台处理器
         console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
         console_handler.setFormatter(logging.Formatter(
             "%(asctime)s - %(levelname)s - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S"
