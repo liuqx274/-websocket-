@@ -7,7 +7,7 @@ logging = get_logger()
 
 
 async def FindModelDetails(payload: Dict[str, Any]) -> Dict[str, Any]:
-    logging.info("  --- 调用寻找模型信息的功能  ---  ")
+    logging.debug("  --- 调用寻找模型信息的功能  ---  ")
     # region 查询模型信息的处理逻辑
     base_path = os.path.join("model", "Saved_models")  # 你的模型保存路径
     model_list: List[Dict[str, Any]] = []
@@ -17,6 +17,8 @@ async def FindModelDetails(payload: Dict[str, Any]) -> Dict[str, Any]:
         return {"models": []}
 
     for folder_name in os.listdir(base_path):
+        if folder_name == ".gitkeep":
+            continue
         folder_path = os.path.join(base_path, folder_name)
         if os.path.isdir(folder_path):
             info_path = os.path.join(folder_path, "model_info.json")
@@ -31,7 +33,7 @@ async def FindModelDetails(payload: Dict[str, Any]) -> Dict[str, Any]:
             else:
                 logging.warning(f"未找到 model_info.json 文件：{info_path}")
         else:
-            logging.warning(f"未找到 模型信息 文件: {folder_path}, 这很不合理，需要人工查询一下功能日志")
+            logging.warning(f"报错: 检查到 {folder_path} 并非模型文件夹, 这很不合理，需要人工查询一下功能日志")
 
     # endregion
 
