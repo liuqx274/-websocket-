@@ -5,6 +5,6 @@ logging = get_logger()
 
 
 async def OptimizationIssues(payload: Dict[str, Any]) -> Dict[str, Any]:
-    logging.info("  --- 调用最优化问题功能  ---  ")
+    logging.debug("  --- 调用最优化问题功能  ---  ")
     # 这里是你模型训练的逻辑
     return {"score": 0.95}

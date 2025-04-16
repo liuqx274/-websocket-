@@ -8,7 +8,7 @@ logging = get_logger()
 
 
 async def ModifyModelInformation(payload: Dict[str, Any]) -> Dict[str, Any]:
-    logging.info("  --- 调用修改模型信息功能  ---  ")
+    logging.debug("  --- 调用修改模型信息功能  ---  ")
 
     # region 修改模型信息的逻辑
     base_path = os.path.join("model", "Saved_models")
@@ -43,7 +43,7 @@ async def ModifyModelInformation(payload: Dict[str, Any]) -> Dict[str, Any]:
 
     # endregion
 
-    logging.info(f"模型信息文件夹: {payload.get('oldName')} 改为: {payload.get('newName')}")
+    logging.debug(f"模型信息文件夹: {payload.get('oldName')} 改为: {payload.get('newName')}")
     return {
         "oldName": payload.get("oldName"),
         "newName": payload.get("newName"),

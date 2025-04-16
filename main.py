@@ -27,7 +27,7 @@ async def server(websocket):
             operation = data.get("operation")
 
             # 执行对应操作，得出计算结果
-            logging.debug(f"处理请求...")
+            logging.debug(f"寻找相应处理模块...")
             response: ServerResponseData = await handel(operation, data)
 
             logging.debug(f"发送数据 - {response}")

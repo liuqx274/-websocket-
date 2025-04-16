@@ -63,7 +63,7 @@ async def handle_operation(operation: str, data: ClientRequestData) -> ServerRes
     except Exception as e:
         response["status"] = False
         response["result"]["message"] = f"操作 {operation} 执行出错:"
-        logging.warning(f"执行计算的中出现状态而终止")
+        logging.warning(f"执行计算的中出现错误而终止")
 
     return response
 
