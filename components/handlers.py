@@ -12,6 +12,7 @@ logging = get_logger()
 
 # operation 调度函数
 async def handle_operation(operation: str, data: ClientRequestData) -> ServerResponseData:
+    print('进入调度函数')
     response: ServerResponseData = {
         "operation": operation,
         "status": True,
@@ -32,7 +33,7 @@ async def handle_operation(operation: str, data: ClientRequestData) -> ServerRes
             lower() 将字符串的所有字符转变为小写
         '''
         module_path = f"units.{operation}"  # 不要加 `.py`
-
+        print(f"要找寻的模块为--{module_path}")
         try:
             module = importlib.import_module(module_path)
             logging.debug(f"已找到对应的模块-{module_path}")

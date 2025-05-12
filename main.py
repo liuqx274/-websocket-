@@ -1,4 +1,6 @@
 import asyncio  # python 的异步库
+import os
+
 import websockets  # websocket 库
 import json
 from components.logger import get_logger  # 导入日志模块
